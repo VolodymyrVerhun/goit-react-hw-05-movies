@@ -15,7 +15,7 @@ export default function CastList() {
 
       .catch(error => console.log(error));
   }, [id]);
-  console.log('cast', cast);
+
   return (
     <CastListStyle>
       {cast &&

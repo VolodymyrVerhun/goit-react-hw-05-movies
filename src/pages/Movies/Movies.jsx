@@ -13,13 +13,23 @@ export default function Movies() {
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useSearchParams();
 
+  const [moviesFound, setMoviesFound] = useState(true);
+
   const filmQuery = query.get('query');
-  console.log('query', filmQuery);
+
   useEffect(() => {
     if (filmQuery) {
       getMoviesByQuery(filmQuery)
-        .then(setMovies)
-        .catch(error => console.log(error));
+        .then(movies => {
+          setMovies(movies);
+          setMoviesFound(movies.length > 0);
+        })
+        .catch(error => {
+          console.log(error);
+          setMoviesFound(false);
+        });
+      // .then(setMovies)
+      // .catch(error => console.log(error));
     }
   }, [filmQuery]);
 
@@ -35,7 +45,19 @@ export default function Movies() {
         <MoviesSearchInput type="text" name="query" required />
         <MoviesSearchBtn type="submit">Search</MoviesSearchBtn>
       </MoviesSearchForme>
-      <MovieaList movies={movies} />
+      {moviesFound ? (
+        <MovieaList movies={movies} />
+      ) : (
+        <p
+          style={{
+            color: 'red',
+            marginLeft: '50px',
+            fontSize: '30px',
+          }}
+        >
+          No movies found
+        </p>
+      )}
     </div>
   );
 }

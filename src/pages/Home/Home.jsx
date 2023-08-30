@@ -7,7 +7,9 @@ export default function Home() {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     getTrendMovies()
-      .then(setMovies)
+      .then(data => {
+        setMovies(data.filter(item => item.title));
+      })
       .catch(error => {
         console.log(error);
       });

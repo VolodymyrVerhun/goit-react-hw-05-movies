@@ -37,7 +37,7 @@ export default function MovieDetails() {
   if (!movie) {
     return <h2>...Loading</h2>;
   }
-  console.log(movie);
+
   return (
     <div>
       <BtnGoBack onClick={handleClickBack}>go back</BtnGoBack>

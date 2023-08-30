@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { MovieItemStyled } from 'components/MovieaList/MovieaList.styled';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
@@ -12,3 +13,7 @@ export default function MovieListItem({ title, id }) {
     </div>
   );
 }
+MovieListItem.propTypes = {
+  title: PropTypes.string,
+  id: PropTypes.string,
+};

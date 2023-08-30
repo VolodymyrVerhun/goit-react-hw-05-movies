@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default function ReviewsItem({ author, content }) {
@@ -8,3 +9,8 @@ export default function ReviewsItem({ author, content }) {
     </div>
   );
 }
+
+ReviewsItem.propTypes = {
+  author: PropTypes.string,
+  content: PropTypes.string,
+};
